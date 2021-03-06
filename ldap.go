@@ -165,6 +165,12 @@ type AddRequest struct {
 	dn         string
 	attributes []Attribute
 }
+
+// Attributes returns a copy of the request attributes
+func (a AddRequest) Attributes() []Attribute {
+	return a.attributes[:]
+}
+
 type DeleteRequest struct {
 	dn string
 }
@@ -185,6 +191,14 @@ type CompareRequest struct {
 type ExtendedRequest struct {
 	requestName  string
 	requestValue string
+}
+
+func (e ExtendedRequest) Name() string {
+	return e.requestName
+}
+
+func (e ExtendedRequest) Value() string {
+	return e.requestValue
 }
 
 // Adds descriptions to an LDAP Response packet for debugging
